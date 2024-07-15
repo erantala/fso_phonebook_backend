@@ -1,4 +1,6 @@
 const express = require('express')
+const morgan = require('morgan')
+
 const app = express()
 
 let persons = [
@@ -29,7 +31,20 @@ let persons = [
     }
 ]
 
+morgan.token('body', function (req, res) { return JSON.stringify(req.body)})
+
 app.use(express.json())
+
+app.use((req, res, next) => {
+    if (req.method === 'POST') {
+        morgan(':method :url :status :res[content-length] - :response-time ms :body')
+        (req, res, next)
+    }
+    else {
+        morgan('tiny')
+        (req, res, next)
+    }
+})
 
 const infoPage = () => {
     return (`<p>Phonebook has info for ${persons.length} people</p>
