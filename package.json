@@ -7,7 +7,7 @@
     "start": "node index.js",
     "dev": "nodemon index.js",
     "test": "echo \"No tests specified\"",
-    "build:ui": "rm -rf dist && cd ../fullstackopen-course/osa3/puhelinluettelo && npm run build && cp -r dist ../fso_phonebook_backend",
+    "build:ui": "rm -rf dist && cd ../fullstackopen-course/osa3/puhelinluettelo && npm run build && cp -r dist ../../../fso_phonebook_backend",
     "deploy": "flyio deploy",
     "deploy:full": "npm run build:ui && npm run deploy",
     "logs:prod": "flyio logs"
