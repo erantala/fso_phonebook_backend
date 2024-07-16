@@ -6,15 +6,21 @@
   "scripts": {
     "start": "node index.js",
     "dev": "nodemon index.js",
-    "test": "echo \"No tests specified\""
+    "test": "echo \"No tests specified\"",
+    "build:ui": "rm -rf dist && cd ../fullstackopen-course/osa3/puhelinluettelo && npm run build && cp -r dist ../fso_phonebook_backend",
+    "deploy": "flyio deploy",
+    "deploy:full": "npm run build:ui && npm run deploy",
+    "logs:prod": "flyio logs"
   },
   "author": "Eero Rantala",
   "license": "ISC",
   "dependencies": {
+    "cors": "^2.8.5",
     "express": "^4.19.2",
     "morgan": "^1.10.0"
   },
   "devDependencies": {
+    "@flydotio/dockerfile": "^0.5.8",
     "nodemon": "^3.1.0"
   }
 }
