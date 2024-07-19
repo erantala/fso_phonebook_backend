@@ -7,8 +7,8 @@
     "start": "node index.js",
     "dev": "nodemon index.js",
     "test": "echo \"No tests specified\"",
-    "build:ui": "rm -rf dist && cd ../fullstackopen-course/osa3/puhelinluettelo && npm run build && cp -r dist ../../../fso_phonebook_backend",
-    "deploy": "flyio deploy",
+    "build:ui": "rm -rf dist && cd ../fullstackopen-course/osa3/puhelinluettelo && npm run build && cp -r dist ../../../fso_phonebook_backend && cat .env >> ../../../fso_phonebook_backend/.env",
+    "deploy": "flyio deploy --build-arg BACKEND_SHA=$(git rev-parse --short HEAD) --build-arg FRONTEND_SHA=$(tail -1 .env | cut -d\\\" -f2)",
     "deploy:full": "npm run build:ui && npm run deploy",
     "logs:prod": "flyio logs"
   },
@@ -16,7 +16,9 @@
   "license": "ISC",
   "dependencies": {
     "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
     "express": "^4.19.2",
+    "mongoose": "^8.5.1",
     "morgan": "^1.10.0"
   },
   "devDependencies": {

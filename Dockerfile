@@ -12,6 +12,11 @@ WORKDIR /app
 # Set production environment
 ENV NODE_ENV="production"
 
+# Set build hashes
+ARG BACKEND_SHA
+ENV BACKEND_SHA=${BACKEND_SHA}
+ARG FRONTEND_SHA
+ENV FRONTEND_SHA=${FRONTEND_SHA}
 
 # Throw-away build stage to reduce size of final image
 FROM base as build
