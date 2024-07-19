@@ -10,7 +10,8 @@
     "build:ui": "rm -rf dist && cd ../fullstackopen-course/osa3/puhelinluettelo && npm run build && cp -r dist ../../../fso_phonebook_backend && cat .env >> ../../../fso_phonebook_backend/.env",
     "deploy": "flyio deploy --build-arg BACKEND_SHA=$(git rev-parse --short HEAD) --build-arg FRONTEND_SHA=$(tail -1 .env | cut -d\\\" -f2)",
     "deploy:full": "npm run build:ui && npm run deploy",
-    "logs:prod": "flyio logs"
+    "logs:prod": "flyio logs",
+    "lint": "eslint ."
   },
   "author": "Eero Rantala",
   "license": "ISC",
@@ -22,7 +23,11 @@
     "morgan": "^1.10.0"
   },
   "devDependencies": {
+    "@eslint/js": "^9.7.0",
     "@flydotio/dockerfile": "^0.5.8",
+    "@stylistic/eslint-plugin-js": "^2.3.0",
+    "eslint": "^9.7.0",
+    "globals": "^15.8.0",
     "nodemon": "^3.1.0"
   }
 }
